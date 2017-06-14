@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Campground = require("./models/campgrounds");
+var Comment = require("./models/comments");
 
 var data = [{
     name: "Long Lake",
@@ -18,16 +19,28 @@ var data = [{
 function seedDB() {
     Campground.remove({}, function(err, seed) {
         if (err) {
+
             console.log(err);
         }
         else {
             data.forEach(function(seed) {
-                Campground.create(seed, function(err, seed) {
+                Campground.create(seed, function(err, campground) {
                     if (err) {
                         console.log(err);
                     }
                     else {
-                        console.log(seed);
+                        Comment.create({
+                            author: "Bill Murry",
+                            text: "There are no gophers here."
+                        }, function(err, comment) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            else {
+                                campground.comments.push(comment);
+                                campground.save();
+                            }
+                        });
                     }
                 });
             });

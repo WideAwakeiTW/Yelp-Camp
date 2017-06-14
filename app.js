@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var Campground = require("./models/campgrounds");
 var seedDB = require("./seeds");
+var comment = require("./models/comments");
 
 mongoose.connect('mongodb://localhost/yelp_camp');
 
@@ -53,12 +54,14 @@ app.post("/campgrounds", function(req, res) {
         }
     });
 });
-
+//=====================
+//SHOW ROUTE
+//=====================
 //show more details on individual campground
 app.get("/campgrounds/:id", function(req, res) {
     var id = req.params.id;
     //retrieve item in DB using ID
-    Campground.findById(id, function(err, foundCampground) {
+    Campground.findById(id).populate("comments").exec(function(err, foundCampground) {
         if (err) {
             console.log(err);
         }
