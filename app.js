@@ -2,37 +2,18 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-
-
+var Campground = require("./models/campgrounds");
+var seedDB = require("./seeds");
 
 mongoose.connect('mongodb://localhost/yelp_camp');
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-var Campground = mongoose.model('Campground', campgroundSchema);
-
-//manual add new campground to DB
-// Campground.create({
-//     name: "Cades Cove",
-//     image: "http://delightedimages.com/wp-content/uploads/2014/12/Delighted-Images_Ilma-and-Sohail_Presidio-Engagment_SocMed_110_0644.jpg",
-//     description: "Great Smokey Mountains National Park"
-// }, function(err, campground) {
-//     if (err) {
-//         console.log(err);
-//     }
-//     else {
-//         console.log("New campground created:");
-//         console.log(campground);
-//     }
-// });
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+
+seedDB();
 
 app.get("/", function(req, res) {
     res.render("home");
