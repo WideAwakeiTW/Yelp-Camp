@@ -20,21 +20,26 @@ app.get("/", function(req, res) {
     res.render("home");
 });
 
+//==========
+// INDEX
+//==========
 app.get("/campgrounds", function(req, res) {
     Campground.find({}, function(err, campgrounds) {
         if (err) {
             console.log(err);
         }
         else {
-            res.render("index", {
+            res.render("./campgrounds/index", {
                 campgrounds: campgrounds
             });
         }
     });
 });
-
+//===========
+//NEW ROUTE
+//=============
 app.get("/campgrounds/new", function(req, res) {
-    res.render("new");
+    res.render("./campgrounds/new");
 });
 app.post("/campgrounds", function(req, res) {
     var newname = req.body.name;
@@ -66,7 +71,7 @@ app.get("/campgrounds/:id", function(req, res) {
             console.log(err);
         }
         else {
-            res.render("show", {
+            res.render("./campgrounds/show", {
                 campground: foundCampground
             });
         }
