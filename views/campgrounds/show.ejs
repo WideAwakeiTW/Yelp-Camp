@@ -1,13 +1,44 @@
 <%include ../partials/header%>
+<div class="container">
+     <div class="row">
+         <div class="col-md-3">
+             <p class="lead">Yelp Camp!</p>
+             <div class="list-group">
+                 <li class="list-group-item">Item 1</li>
+                 <li class="list-group-item active">Item 2</li>
+                 <li class="list-group-item">Item 3</li>
+             </div>
+         </div> 
+         <div class="col-md-9">
+             <div id="no-pad" class="thumbnail">
+                 <img class="img-responsive" src=<%= campground.image %>>
+                     <div class="caption-full">
+                      <h4 class="pull-right">$9.00/night</h4>
+                      <h4><a href="#"  ><%=campground.name%></a></h4>
+                      <p><%=campground.description%></p>
+                  </div>
+                  </div>
+             <div class="well">
+                <div class="text-right">
+                     <a class="btn btn-success pull-right" href="<%=campground._id%>/comments/new">Add Comment</a>
+                 <br></br>
+                 </div>
+                 <hr>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <%campground.comments.forEach(function (comment) {%>
+                            <p><strong><%=comment.author%></strong><span class='pull-right'>10 days ago</p>
+                            <p><%=comment.text%></p>
+                            <% }); %>
+                            </div>
+                          </div>
+              </div>
+              <p><a href="/campgrounds">Go Back</a></p> 
+          </div>
+          </div>
+        </div>  
+     
+     </div>
+</div>
 
-<h1><%=campground.name%></h1>
-<img src=<%=campground.image%>
-<h3><%=campground.description%></h3>
-</br>
-<%campground.comments.forEach(function (comment) {%>
-<p><strong>COMMENTS:</strong></p>
-    <p><strong><%=comment.author%></strong> - <%=comment.text%></p>
-    <% }); %>
-    <p><a href="/campgrounds">Go Back</a></p>
-    <a class="btn btn-primary" href="#">Add Comment</a>
 <%include ../partials/footer%>
