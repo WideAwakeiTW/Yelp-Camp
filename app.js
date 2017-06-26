@@ -13,7 +13,7 @@ var commentRoutes = require("./routes/comments");
 var indexRoutes = require("./routes/index");
 var methodOverride = require("method-override");
 var flash = require("connect-flash");
-mongoose.connect('mongodb://errordrivendev:7codeBaker@ds139082.mlab.com:39082/hart_yelp_camp');
+mongoose.connect('mongodb://bhart:mikayla@ds139082.mlab.com:39082/hart_yelp_camp');
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
