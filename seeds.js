@@ -18,33 +18,34 @@ var data = [{
 
 function seedDB() {
     Campground.remove({}, function(err, seed) {
-        if (err) {
+        // if (err) {
 
-            console.log(err);
-        }
-        else {
-            data.forEach(function(seed) {
-                Campground.create(seed, function(err, campground) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        Comment.create({
-                            author: "Bill Murry",
-                            text: "There are no gophers here."
-                        }, function(err, comment) {
-                            if (err) {
-                                console.log(err);
-                            }
-                            else {
-                                campground.comments.push(comment);
-                                campground.save();
-                            }
-                        });
-                    }
-                });
-            });
-        }
+        //     console.log(err);
+        // }
+        // else {
+        //     data.forEach(function(seed) {
+        //         Campground.create(seed, function(err, campground) {
+        //             if (err) {
+        //                 console.log(err);
+        //             }
+        //             else {
+        //                 Comment.create({
+        //                     author: "Bill Murry",
+        //                     text: "There are no gophers here."
+        //                 }, function(err, comment) {
+        //                     if (err) {
+        //                         console.log(err);
+        //                     }
+        //                     else {
+        //                         campground.comments.push(comment);
+        //                         campground.save();
+
+        //                     }
+        //                 });
+        //             }
+        //         });
+        //     });
+        // }
     });
 }
 module.exports = seedDB;

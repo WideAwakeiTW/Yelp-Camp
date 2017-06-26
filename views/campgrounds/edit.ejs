@@ -1,0 +1,30 @@
+<% include ../partials/header%>
+<h1 style="text-align:center; margin-bottom: 40px">Edit <%=campground.name%> </h1>
+
+<form style="margin:auto; width:30%" action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+    <div class ="form-group">
+    <input class="form-control" type="text" value="<%=campground.name%>" name="campground[name]">
+    </div>
+        <div class ="form-group">
+    <select class= "form-control" name="campground[price]" value="<%=campground.price%>>
+        <option id="firstselect" selected="unkown" value="price per night is unkown">select general price range</option>
+        <option>Free!</option>
+        <option>under $15/nt</option>
+        <option>$15-$30/nt</option>
+        <option>$30-$45/nt</option>
+        <option>$45-$60/nt</option>
+        <option>over $60/nt</option>
+    </select>
+    </div>
+    <div class ="form-group">
+    <input class="form-control" type="text" value="<%=campground.image %>" name="campground[image]">
+    </div>    
+    <div class ="form-group">
+    <input class="form-control" type="text" value="<%=campground.description%>" name="campground[description]">
+    </div>
+    <div class ="form-group">
+    <input type="submit" class="btn btn-primary btn-lg btn-block" value="update">
+    </div>
+    <p><a href="/campgrounds">Go Back</a></p>
+</form>
+<% include ../partials/footer%> 

@@ -1,0 +1,83 @@
+body {
+    background-color: rgb(00, 00, 00);
+}
+
+#landing-header {
+    text-align: center;
+    z-index: 1;
+    color: white;
+    padding-top: 40vh;
+    position: relative;
+    font-size: 50px;
+}
+
+#landing-header h1 {
+    font-size: 55px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li {
+    background-size: cover;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: 50s linear infinite fadeout;
+    background-position: 50% 50%;
+}
+
+.slideshow li:nth-child(1) {
+    background-image: url("../images/bhoj-rai-24891.jpg")
+}
+
+.slideshow li:nth-child(2) {
+    background-image: url("../images/mike-erskine-144525.jpg");
+    animation-delay: 10s
+}
+
+.slideshow li:nth-child(3) {
+    background-image: url("../images/julian-bialowas-1969.jpg");
+    animation-delay: 20s
+}
+
+.slideshow li:nth-child(4) {
+    background-image: url("../images/alex-holt-41510.jpg");
+    animation-delay: 30s;
+}
+
+.slideshow li:nth-child(5) {
+    background-image: url("../images/zach-betten-40145.jpg");
+    animation-delay: 40s;
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity: 1
+    }
+    30% {
+        opacity: 0
+    }
+}

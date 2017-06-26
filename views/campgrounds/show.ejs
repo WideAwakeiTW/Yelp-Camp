@@ -13,22 +13,36 @@
              <div id="no-pad" class="thumbnail">
                  <img class="img-responsive" src=<%= campground.image %>>
                      <div class="caption-full">
-                      <h4 class="pull-right">$9.00/night</h4>
+                      <h4 class="pull-right"><%=campground.price%></h4>
                       <h4><a href="#"  ><%=campground.name%></a></h4>
                       <p><%=campground.description%></p>
+                      <p><em>submitted by <%=campground.author.username%></em></p>
+                      <% if (currentUser && campground.author.id.equals(currentUser._id)) {%>
+                      <a type="submit" href="/campgrounds/<%=campground.id%>/edit" class="btn btn-warning btn-sm" >edit</a>
+                      <form id="horiz-ctrl" action="/campgrounds/<%=campground.id%>?_method=delete" method="POST">
+                        <input type="submit" class="btn btn-danger btn-sm" value="delete"></a>  
+                      </form>
+                      <% }; %>
+                      <% console.log("currentuser is: " + currentUser); %>
                   </div>
                   </div>
              <div class="well">
                 <div class="text-right">
-                     <a class="btn btn-success pull-right" href="<%=campground._id%>/comments/new">Add Comment</a>
+                     <a class="btn btn-success pull-right" href="/campgrounds/<%=campground.id%>/comments/new">Add Comment</a>
                  <br></br>
                  </div>
                  <hr>
                  <div class="row">
                     <div class="col-md-12">
                         <%campground.comments.forEach(function (comment) {%>
-                            <p><strong><%=comment.author%></strong><span class='pull-right'>10 days ago</p>
+                            <p><strong><%=comment.author.username%></strong><span class='pull-right'>10 days ago</p>
                             <p><%=comment.text%></p>
+                          <% if(currentUser && comment.author.id.equals(currentUser.id)) { %>
+                            <a type="submit" href="/campgrounds/<%=campground.id%>/comments/<%=comment.id%>/edit" class="btn btn-warning btn-xs" >edit</a>
+                              <form id="horiz-ctrl" action="/campgrounds/<%=campground.id%>/comments/<%=comment.id%>?_method=delete" method="POST">
+                            <input type="submit" class="btn btn-danger btn-xs" value="delete"></a>  
+                      </form>
+                         <% };%>
                             <% }); %>
                             </div>
                           </div>
